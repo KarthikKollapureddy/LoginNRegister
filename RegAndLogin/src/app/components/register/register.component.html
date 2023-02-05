@@ -1,0 +1,86 @@
+<form [formGroup]="form" #formDir = ngForm>
+
+  <div class="mb-3">
+    <label for="firstname" class="form-label">first name</label>
+    <input type="text" class="form-control" id="firstname" formControlName="firstname" [(ngModel)]="User.firstname" required>
+  </div>
+
+  <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+              class="alert alert-danger">
+
+            <div *ngIf="firstname.errors?.['required']">
+              Name is required.
+            </div>
+            <div *ngIf="firstname.errors?.['minlength']">
+              Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="firstname.errors?.['maxlength']">
+              Name must be at not more than 18 characters long.
+            </div>
+            <!-- <div *ngIf="firstname.errors?.['forbiddenName']">
+              Name cannot be Bob.
+            </div> -->
+          </div>
+
+  <div class="mb-3">
+    <label for="lastname" class="form-label">last name</label>
+    <input type="text" class="form-control"  id="lastname" formControlName="lastname" [(ngModel)]="User.lastname">
+  </div>
+  <div *ngIf="lastname.invalid && (lastname.touched||lastname.dirty)" class="alert alert-danger">
+    <div *ngIf="lastname.errors?.['minlength']">
+         Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="lastname.errors?.['required']">
+         Name is required
+    </div>
+    <div *ngIf="lastname.errors?.['maxlength']">
+      Name must be at least 18 characters long.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id = "email" formControlName="email" aria-describedby="emailHelpId" placeholder="abc@mail.com" [(ngModel)]="User.email">
+    <!-- <small id="emailHelpId" class="form-text text-muted">Help text</small> -->
+    <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+      <div *ngIf="email.errors?.['required']">
+        Email is required
+      </div>
+      <div *ngIf="email.errors?.['email']">
+        Email is invalid
+      </div>
+
+      <div *ngIf="valid">
+        user with email alredy in use
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input [type]=pass class="form-control"  id="password" formControlName="password" [(ngModel)]="User.password">
+    <div *ngIf="password.invalid && (password.touched || password.dirty)" class="alert alert-danger">
+        <div *ngIf="password.errors?.['required']">
+          password is required
+        </div>
+
+        <div *ngIf="password.errors?.['pattern']">
+          password must contain atleat one upper case, one lower case,one numerical and a special chaacter <br>
+          password length should be in between 8 to 32 characters.
+        </div>
+    </div>
+
+    <button (click)="onClick()" id="pass">
+      <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+    </button>
+  </div>
+
+  <p>Complete the form to enable the Submit button.</p>
+      <button type="submit"
+              class="btn btn-default"
+              [disabled]="form.invalid" (click)="onSubmit()">Submit</button>
+      <button type="button" class="btn btn-default"
+             (click)="formDir.resetForm({})">Reset</button>
+
+</form>

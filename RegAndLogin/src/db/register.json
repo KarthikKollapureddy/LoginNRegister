@@ -1,0 +1,39 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "firstname": "test",
+      "lastname": "test",
+      "email": "test@test.com",
+      "password": "Test@1234"
+    },
+    {
+      "firstname": "Sai Karthik",
+      "lastname": "Kollapureddy",
+      "email": "saibaba6071@gmail.com",
+      "password": "KaWi@344",
+      "id": 2
+    },
+    {
+      "firstname": "Kollapureddy",
+      "lastname": "Karthik",
+      "email": "disib85115@deitada.com",
+      "password": "Abc@1234",
+      "id": 4
+    },
+    {
+      "firstname": "Sai Karthik",
+      "lastname": "Kollapureddy",
+      "email": "test@test.com",
+      "password": "Kasfr@123",
+      "id": 5
+    },
+    {
+      "firstname": "Sai Karthik",
+      "lastname": "Kollapureddy",
+      "email": "test@test.com",
+      "password": "bc@123445fA",
+      "id": 6
+    }
+  ]
+}

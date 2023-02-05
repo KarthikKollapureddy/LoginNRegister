@@ -1,0 +1,50 @@
+<form [formGroup]="form" #formDir = ngForm>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" [(ngModel)]="user.email" formControlName="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@mail.com">
+    <!-- <small id="emailHelpId" class="form-text text-muted">Help text</small> -->
+    <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+      <div *ngIf="email.errors?.['required']">
+        Email is required
+      </div>
+      <div *ngIf="email.errors?.['email']">
+        Email is invalid
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input [type]=pass [(ngModel)]="user.password" class="form-control" name="password" id="password" formControlName="password">
+
+    <div *ngIf="password.invalid && (password.touched || password.dirty)" class="alert alert-danger">
+      <div *ngIf="password.errors?.['required']">
+        password is required
+      </div>
+
+      <div *ngIf="password.errors?.['pattern']">
+        password must contain atleat one upper case, one lower case,one numerical and a special chaacter <br>
+        password length should be in between 8 to 32 characters.
+      </div>
+    </div>
+
+          <button (click)="onClick()" id="pass">
+            <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+            <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+          </button>
+  </div>
+
+  <div *ngIf="noUser" class="alert alert-danger">
+    no user or invalid credentials
+  </div>
+
+  <p>Complete the form to enable the Submit button.</p>
+  <button type="submit"
+          class="btn btn-default"
+          (click)="onSubmit()"
+          [disabled]="form.invalid">Submit</button>
+  <button type="button" class="btn btn-default"
+         (click)="formDir.resetForm({})">Reset</button>
+
+</form>
